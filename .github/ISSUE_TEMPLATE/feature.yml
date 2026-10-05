@@ -1,0 +1,65 @@
+name: Feature or improvement
+description: Propose a feature, infrastructure change, or improvement.
+title: '[Feature]: '
+labels: []
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem before proposing the implementation. Use this form for work where the reasoning and acceptance criteria are worth preserving.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem or limitation should this work address?
+      placeholder: Describe the current problem and who or what it affects.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What constraints, existing behavior, or background information matters?
+    validations:
+      required: true
+
+  - type: textarea
+    id: options
+    attributes:
+      label: Options considered
+      description: List meaningful alternatives when a decision is required.
+      placeholder: |
+        1. Option A — trade-off
+        2. Option B — trade-off
+    validations:
+      required: false
+
+  - type: textarea
+    id: decision
+    attributes:
+      label: Proposed decision
+      description: Describe the preferred direction and why. Leave this blank if discovery is still required.
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Define observable conditions that make the work complete.
+      placeholder: |
+        - [ ] Condition one
+        - [ ] Condition two
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add links, screenshots, references, or implementation notes.
+    validations:
+      required: false

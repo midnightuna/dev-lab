@@ -1,0 +1,71 @@
+name: Bug report
+description: Report reproducible incorrect behavior.
+title: '[Bug]: '
+labels: []
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Provide the smallest reproducible case you can. Remove secrets and private data from logs and screenshots.
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide deterministic steps or a minimal reproduction.
+      placeholder: |
+        1. Run ...
+        2. Open ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include relevant browser, operating system, Node.js, pnpm, and commit information.
+      value: |
+        - OS:
+        - Browser:
+        - Node.js:
+        - pnpm:
+        - Commit:
+    validations:
+      required: false
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or screenshots
+      description: Add sanitized logs, screenshots, or other evidence.
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Define how the fix will be verified.
+      placeholder: |
+        - [ ] The reproduction no longer fails
+        - [ ] Related behavior remains unchanged
+    validations:
+      required: true
