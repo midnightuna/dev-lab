@@ -1,0 +1,25 @@
+# Local project documentation
+/docs/
+
+# Dependencies and package manager
+node_modules/
+.pnpm-store/
+
+# Build output
+.next/
+out/
+dist/
+coverage/
+styled-system/
+
+# Environment
+.env*
+!.env.example
+
+# OS and editor
+.DS_Store
+*.swp
+
+# Logs
+*.log
+pnpm-debug.log*
