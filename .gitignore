@@ -11,6 +11,7 @@ out/
 dist/
 coverage/
 styled-system/
+*.tsbuildinfo
 
 # Environment
 .env*
