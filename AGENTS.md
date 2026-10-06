@@ -107,6 +107,8 @@ pnpm content:validate
 - Keep strict token usage enabled.
 - Prefer statically extractable style expressions.
 - Do not build arbitrary style objects from runtime values.
+- Build layouts mobile-first: use base styles for narrow viewports and Panda breakpoint conditions to enhance wider layouts.
+- Keep pages usable without horizontal overflow at 320px, and verify responsive styling changes at mobile and desktop widths.
 - Use recipes for real variants and `staticCss` only when extraction cannot discover a required finite set.
 - Do not create a shared design-system package until multiple consumers justify it.
 
