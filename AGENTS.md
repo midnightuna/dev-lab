@@ -26,7 +26,7 @@ Do not duplicate a rule across multiple documents. When implementation and docum
 The intended dependency direction is:
 
 ```text
-@dev-lab/blog → @dev-lab/content → content/posts, content/tags.yml
+@dev-lab/blog → @dev-lab/content → content/posts, content/tags.yml, content/series.yml
 ```
 
 ### Blog application
@@ -46,7 +46,7 @@ The content package owns:
 
 - Markdown discovery and frontmatter parsing
 - post schemas and domain models
-- tag registry parsing and validation
+- tag and series registry parsing and validation
 - slug, visibility, and ordering rules
 - framework-independent content queries
 
@@ -119,6 +119,7 @@ pnpm content:validate
 - Tag slugs use lowercase kebab-case.
 - Duplicate tags within one post, duplicate registry keys, and unregistered tags are validation errors.
 - Reusing a tag across posts is expected.
+- Series use registered lowercase kebab-case slugs and are ordered by post date, then slug.
 - Visibility is controlled by the post status contract. Every content consumer must use the shared visibility function.
 - Draft posts must not appear in production routes, sitemap output, or RSS output.
 - Raw HTML remains disabled in Markdown unless the security and rendering contract is deliberately revised.

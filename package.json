@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "pnpm --filter @dev-lab/blog dev",
-    "build": "pnpm -r --if-present build",
+    "build": "pnpm content:validate && pnpm -r --if-present build",
     "lint": "eslint .",
     "typecheck": "pnpm -r --if-present typecheck",
     "format": "prettier --write .",
