@@ -9,9 +9,15 @@
     "prepare": "panda codegen"
   },
   "dependencies": {
+    "@dev-lab/content": "workspace:*",
+    "@shikijs/rehype": "^4.5.0",
     "next": "16.3.8",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "react-markdown": "^10.1.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@pandacss/dev": "2.1.1",

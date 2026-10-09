@@ -12,6 +12,19 @@ series: building-dev-lab
 thumbnail:
 ---
 
-# Published placeholder
+## Rendering contract
 
 This placeholder verifies the published content pipeline and will be replaced by a real post.
+
+[Browse every published post](/posts/).
+
+| Capability | Expected result                 |
+| ---------- | ------------------------------- |
+| GFM table  | Responsive horizontal scrolling |
+| Raw HTML   | Ignored by the renderer         |
+
+```ts
+const status = 'published'
+```
+
+<div data-render-contract="raw-html">This must not render.</div>
