@@ -16,7 +16,8 @@ import { parseTagRegistry } from './tags.ts'
 import { ContentValidationError } from './validation.ts'
 import { isPostVisible } from './visibility.ts'
 
-const defaultContentDirectory = fileURLToPath(new URL('../../../content/', import.meta.url))
+const getDefaultContentDirectory = (): string =>
+  resolve(dirname(fileURLToPath(import.meta.url)), '../../../content')
 
 const compareNewestFirst = (left: Post, right: Post): number =>
   right.date.localeCompare(left.date) || left.slug.localeCompare(right.slug)
@@ -114,7 +115,7 @@ const validatePosts = (
 }
 
 export const validateContent = (options: LoadContentOptions = {}): ValidationResult => {
-  const contentDirectory = resolve(options.contentDirectory ?? defaultContentDirectory)
+  const contentDirectory = resolve(options.contentDirectory ?? getDefaultContentDirectory())
   const postsDirectory = join(contentDirectory, 'posts')
   const tagsPath = join(contentDirectory, 'tags.yml')
   const seriesPath = join(contentDirectory, 'series.yml')
