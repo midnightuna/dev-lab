@@ -88,7 +88,9 @@ export function SiteFooter() {
       })}
     >
       <PageContainer>
-        <small>© {new Date().getUTCFullYear()} nightuna. Built as a static engineering log.</small>
+        <small>
+          © {new Date().getUTCFullYear()} midnightuna. Built as a static engineering log.
+        </small>
       </PageContainer>
     </footer>
   )
