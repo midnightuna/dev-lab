@@ -41,8 +41,8 @@ function normalizeSiteUrl(value: string): string {
 }
 
 export const siteConfig = {
-  name: 'midnightuna dev log',
-  author: 'midnightuna',
+  name: 'nightuna dev log',
+  author: 'nightuna',
   tagline: '프론트엔드 엔지니어링을 탐구하고, 실험하고, 기록합니다.',
   description:
     'React, TypeScript, 웹 플랫폼과 소프트웨어 설계를 탐구하고 실험한 결과를 기록하는 기술 블로그입니다.',

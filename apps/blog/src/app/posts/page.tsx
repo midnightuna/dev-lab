@@ -9,7 +9,7 @@ import { defaultOpenGraphImagePath, getMetadataAlternates, toSiteUrl } from '@/l
 import { routes } from '@/lib/routes'
 
 const title = 'Posts'
-const description = 'midnightuna dev log에 발행된 기술 기록을 최신순으로 모았습니다.'
+const description = 'nightuna dev log에 발행된 기술 기록을 최신순으로 모았습니다.'
 const canonicalUrl = toSiteUrl(routes.posts)
 const openGraphImageUrl = toSiteUrl(defaultOpenGraphImagePath)
 

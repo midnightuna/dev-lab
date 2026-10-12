@@ -11,4 +11,4 @@ series: building-dev-lab
 thumbnail:
 ---
 
-더 나은 기록과 공유를 위해 **midnightuna dev log**를 새롭게 단장하고 있습니다.
+더 나은 기록과 공유를 위해 **nightuna dev log**를 새롭게 단장하고 있습니다.

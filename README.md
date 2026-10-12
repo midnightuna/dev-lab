@@ -1,7 +1,7 @@
 # dev-lab
 
 `dev-lab` is a frontend engineering lab and the source repository for
-[midnightuna dev log](https://midnightuna.github.io/dev-lab/). It keeps Markdown content,
+[nightuna dev log](https://midnightuna.github.io/dev-lab/). It keeps Markdown content,
 build-time validation, the statically exported Next.js blog, and its publishing workflow in one
 pnpm monorepo.
 
