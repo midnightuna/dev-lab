@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { css } from 'styled-system/css'
 
@@ -5,6 +6,7 @@ import { MarkdownContent } from '@/components/markdown-content'
 import { SeriesPostList } from '@/components/series-post-list'
 import { PageContainer } from '@/components/site-shell'
 import { TaxonomyList } from '@/components/taxonomy-list'
+import { siteConfig } from '@/config/site'
 import {
   getPostBySlug,
   getPublishedPosts,
@@ -13,6 +15,13 @@ import {
   getTagLabel,
 } from '@/lib/blog-content'
 import { formatPostDate } from '@/lib/date'
+import {
+  getMetadataAlternates,
+  getPostImageUrl,
+  getPostUrl,
+  toPublishedDateTime,
+} from '@/lib/publishing'
+import { getPostRoute } from '@/lib/routes'
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -47,6 +56,47 @@ export function generateStaticParams() {
   return getPublishedPosts().map((post) => ({ slug: post.slug }))
 }
 
+export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
+
+  if (post === undefined) {
+    notFound()
+  }
+
+  const canonicalUrl = getPostUrl(post)
+  const imageUrl = getPostImageUrl(post)
+  const publishedTime = toPublishedDateTime(post.date)
+  const modifiedTime = toPublishedDateTime(post.updatedAt ?? post.date)
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    authors: [{ name: siteConfig.author }],
+    keywords: post.tags.map((tag) => getTagLabel(tag)),
+    alternates: getMetadataAlternates(getPostRoute(post.slug)),
+    openGraph: {
+      type: 'article',
+      url: canonicalUrl,
+      title: post.title,
+      description: post.excerpt,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      publishedTime,
+      modifiedTime,
+      authors: [siteConfig.author],
+      tags: post.tags.map((tag) => getTagLabel(tag)),
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [imageUrl],
+    },
+  }
+}
+
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -56,9 +106,37 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   const seriesPosts = post.series === undefined ? [] : getSeriesPosts(post.series)
+  const canonicalUrl = getPostUrl(post)
+  const imageUrl = getPostImageUrl(post)
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: toPublishedDateTime(post.date),
+    dateModified: toPublishedDateTime(post.updatedAt ?? post.date),
+    author: {
+      '@type': 'Person',
+      name: siteConfig.author,
+    },
+    image: imageUrl,
+    keywords: post.tags.map((tag) => getTagLabel(tag)),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    url: canonicalUrl,
+    inLanguage: siteConfig.language,
+  }
 
   return (
     <PageContainer as="main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+        }}
+      />
       <article className={articleStyles}>
         <header className={headerStyles}>
           <TaxonomyList
